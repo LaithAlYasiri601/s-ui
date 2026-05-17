@@ -63,7 +63,7 @@ before_show_menu() {
 }
 
 install() {
-    bash <(curl -Ls https://raw.githubusercontent.com/admin8800/s-ui/main/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/LaithAlYasiri601/s-ui/master/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
             start
@@ -82,7 +82,7 @@ update() {
         fi
         return 0
     fi
-    bash <(curl -Ls https://raw.githubusercontent.com/admin8800/s-ui/main/install.sh)
+    bash <(curl -Ls https://raw.githubusercontent.com/LaithAlYasiri601/s-ui/master/install.sh)
     if [[ $? == 0 ]]; then
         LOGI "Update complete, panel has been automatically restarted"
         exit 0
@@ -100,7 +100,7 @@ custom_version() {
 
     [[ "${panel_version}" != v* ]] && panel_version="v${panel_version}"
 
-    download_link="https://raw.githubusercontent.com/admin8800/s-ui/main/install.sh"
+    download_link="https://raw.githubusercontent.com/LaithAlYasiri601/s-ui/master/install.sh"
 
     install_command="bash <(curl -Ls $download_link) $panel_version"
 
@@ -297,7 +297,7 @@ show_log() {
 }
 
 update_shell() {
-    wget -O /usr/bin/s-ui -N --no-check-certificate https://github.com/admin8800/s-ui/raw/main/s-ui.sh
+    wget -O /usr/bin/s-ui -N --no-check-certificate https://raw.githubusercontent.com/LaithAlYasiri601/s-ui/master/s-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "Failed to download script, please check if machine can connect to Github"
@@ -498,7 +498,6 @@ ssl_cert_issue_main() {
         3)
             local domain=""
             read -p "Enter the domain to force renew SSL certificate: " domain
-            ~/.acme.sh/acme.sh --renew -d ${domain} --force
             ;;
         4)
             generate_self_signed_cert
