@@ -135,13 +135,13 @@ install_s-ui() {
     cd /tmp/
 
     if [ $# == 0 ]; then
-        last_version=$(curl -Ls "https://api.github.com/repos/admin8800/s-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version="v1.4.1"
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}Failed to fetch s-ui version, possibly due to Github API limits, please try again later${plain}"
             exit 1
         fi
         echo -e "Fetched latest s-ui version: ${last_version}, starting installation..."
-        wget -N --no-check-certificate -O /tmp/s-ui-linux-$(arch).tar.gz https://github.com/admin8800/s-ui/releases/download/${last_version}/s-ui-linux-$(arch).tar.gz
+        wget -N --no-check-certificate -O /tmp/s-ui-linux-$(arch).tar.gz https://github.com/admin8800/s-ui/releases/download/v1.4.1/s-ui-linux-$(arch).tar.gz
         if [[ $? -ne 0 ]]; then
             echo -e "${red}Download s-ui failed, please ensure server can access Github ${plain}"
             exit 1
@@ -149,7 +149,7 @@ install_s-ui() {
     else
         last_version=$1
         [[ "${last_version}" != v* ]] && last_version="v${last_version}"
-        url="https://github.com/admin8800/s-ui/releases/download/${last_version}/s-ui-linux-$(arch).tar.gz"
+        url="https://github.com/admin8800/s-ui/releases/download/v1.4.1/s-ui-linux-$(arch).tar.gz"
         echo -e "Starting installation of s-ui ${last_version}"
         wget -N --no-check-certificate -O /tmp/s-ui-linux-$(arch).tar.gz ${url}
         if [[ $? -ne 0 ]]; then
